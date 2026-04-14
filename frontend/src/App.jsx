@@ -1,41 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './Components/Navbar';
-import Home from './Components/Home';
-import AboutUs from './Components/AboutUs';
-import Services from './Components/Services';
-import ContactUs from './Components/ContactUs';
-import Footer from './Components/Footer';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import Home from "./Components/Home";
+import AboutUs from "./Components/AboutUs";
+import Services from "./Components/Services";
+import ContactUs from "./Components/ContactUs";
+import "./App.css";
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'contact'];
-      const scrollPos = window.scrollY + 100;
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
-          setActiveSection(id);
-        }
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className="app">
-      <Navbar activeSection={activeSection} />
+    <Router>
+      {/* Navbar shown on every page */}
+      <Navbar />
+
       <main>
-        <section id="home"><Home /></section>
-        <section id="about"><AboutUs /></section>
-        <section id="services"><Services /></section>
-        <section id="contact"><ContactUs /></section>
+        <Routes>
+          {/* Each route renders ONLY that one page */}
+          <Route path="/"         element={<Home />} />
+          <Route path="/about"    element={<AboutUs />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact"  element={<ContactUs />} />
+          {/* Unknown URL → go to Home */}
+          <Route path="*"         element={<Home />} />
+        </Routes>
       </main>
+
+      {/* Footer shown on every page */}
       <Footer />
-    </div>
+
+   
+    </Router>
   );
 }
 

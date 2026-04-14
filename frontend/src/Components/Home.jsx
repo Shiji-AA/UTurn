@@ -63,6 +63,8 @@ export default function Home() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const WHATSAPP_URL = 'https://wa.me/916238323123';
+
   return (
     <div className="home">
       {/* Hero */}
@@ -89,10 +91,16 @@ export default function Home() {
               guidance every step of the way.
             </p>
             <div className="hero__actions">
-              <button className="btn-primary" onClick={() => handleScroll('contact')}>
+              {/* ✅ Opens WhatsApp */}
+              <a
+                className="btn-primary"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Get Free Counselling
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
+              </a>
               <button className="btn-outline" onClick={() => handleScroll('services')}>
                 Explore Programs
               </button>
@@ -188,9 +196,15 @@ export default function Home() {
           <h2>Ready to Begin Your Journey?</h2>
           <p>Join over 150,000 students who found their path with U-Turn Educational Consultancy.</p>
           <div className="cta-banner__actions">
-            <button className="btn-primary" onClick={() => handleScroll('contact')}>
+            {/* ✅ Opens WhatsApp */}
+            <a
+              className="btn-primary"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book a Free Session
-            </button>
+            </a>
             <a href="tel:+916238323123" className="btn-outline">
               📞 +91 6238 323 123
             </a>
